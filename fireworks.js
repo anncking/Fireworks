@@ -1,31 +1,54 @@
-
-
+/*
+ * jQuery for a fireworks display
+ *
+ * Contains div element container with a photo background where the fireworks will displayed on.  Div element created onload and placed at a point on the photo that is randomly 
+ * generated. Copies of that div element are created and new top and left positions are randomly generated for each of those copies, giving the look of the points exploding 
+ * out. The colors to the fireworks are randomly generated as well as if the firework is multi-colored. The particles then slowly drift down and fade out
+ *
+ * written by Ann King
+ * annkingwebdesign.com
+ * 7/18/17
+ * Tutorial Credit: http://mashable.com/2010/07/04/javascript-fireworks-animation/#kRplmtc5diqq
+ */
+ 
 function explosion() {
-var sky;
-var colors = ["red", "orange", "green", "yellow", "blue", "white", "purple", "pink", "teal", "grey"];
-var emmiter = document.createElement("div");
-$("emmiter").className = "base-particle";
-var multicolor = Math.floor((Math.random() * 10));
-	
-	
-    $("emmiter").width(Math.floor(400 * (Math.random() * 398)));
-	$("emmiter").height(Math.floor(240 * (Math.random() * 238)));
-	$("emmiter").background-color(colors["multicolor"]);
-	
-	
-	document.getElementById("photo").appendChild(emmiter);
-	
-	$("emmiter").duplicate(50);
-	
-	$("emmiter").each(function(){
-	var x_offset = Math.floor(10 * (Math.random() * 21));
-	var y_offset = Math.floor(10 * (Math.random() * 21));
-	if (multicolor > 5){
-	multicolor = Math.floor((Math.random() * 10));
-	$(this).background-color(colors["multicolor"]);
-	}
-	 $(this).animate({top: 10 * 'x_offset', left: 10 * 'y_offset'}, 2500);
-	$(this).animate({top: '-=20px', opacity: '0.1'}, 'slow');
+ 
+ 	$.each($( ".base-particle" ), function(){
+	$(this).remove();
 	});
-   setInterval(function(){ explosion(); }, 3000); 
-}( jQuery );
+var sky;
+var colors = ["Tomato", "Crimson", "chartreuse", "aqua", "DeepPink", "white", "bisque", "blue", "teal", "yellow"];
+var emitter = document.createElement("div");
+emitter.className = "base-particle";
+var newcolor;
+
+document.getElementById("photo").append(emitter);
+var multicolor = Math.floor((Math.random() * 10));
+
+emitter.style.backgroundColor = colors[multicolor];
+$(emitter).css({ left: Math.floor(Math.random() * ((390 - 20) + 1)) });
+$(emitter).css({ top: Math.floor(Math.random() * ((235 - 140) + 1)) });
+
+for (i = 0; i < 5; i++) { 
+$( ".base-particle" ).clone().appendTo( ".container" );	
+
+}
+	
+	$.each($( ".base-particle" ), function(){
+	var xoffset = Math.floor(Math.random() * 50);
+	
+	var y_offset = Math.floor(Math.random() * 50);
+	
+	if (multicolor > 5){
+	newcolor = Math.floor((Math.random() * 10));
+	this.style.backgroundColor = colors[newcolor];
+	}
+	$(this).animate({top: '+=' + xoffset, left: '+=' + y_offset}, 2500);
+		$(this).animate({top: '+=40px', opacity: '0.1'}, 'slow');	
+	});
+	
+	
+
+}
+
+setInterval(function(){ explosion();}, 4000);
