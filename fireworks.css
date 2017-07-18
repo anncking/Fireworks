@@ -1,9 +1,40 @@
+/*
+ * CSS for a fireworks display
+ *
+ * The container element is the backdrop for the fireworks show.  The base particle will be randomly placed on the photo then copied and those copies will explode out 
+ * to randomly selected offsets.
+ * 
+ *
+ * written by Ann King
+ * annkingwebdesign.com
+ * 7/18/17
+ */
+
 body {
-    background-color: black;
+    background-color: Gainsboro;
+	
 }
 
-/* Position and style the close button (top right corner) */
+h1 {
+    text-align: center;
+	font-family: "Comic Sans MS", cursive, sans-seri;
+}
+
+h2 {
+    text-align: center;
+}
+
+.frame {
+	background-color: black;
+	margin: auto;
+	overflow: hidden;
+	hight: 800px;
+	width: 400px;
+	border-radius: 25px;
+}
+
 .container {
+	margin: auto;
     background-image: url("Night-Sky.png");
     background-color: #cccccc;
 	position:relative;
@@ -15,51 +46,8 @@ body {
 .base-particle{
 height: 3px;
 width: 3px;
+
 position: absolute;
 
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-.circle {
-  position: relative;
-  margin: 1em auto;
-  border: dashed 1px;
-  padding: 0;
-  width: 32em; height: 32em;
-  border-radius: 50%;
-  list-style: none;
-}
-.slice {
-  overflow: hidden;
-  position: absolute;
-  top: 0; right: 0;
-  width: 50%; height: 50%;
-  transform-origin: 0% 100%; 
-}
-.slice:first-child {
-  transform: rotate(15deg) skewY(-22.5deg);
-}
-.slice-contents {
-  position: absolute;
-  left: -100%;
-  width: 200%; height: 200%;
-  border-radius: 50%;
-  background: black;
-}
-.slice:first-child .slice-contents {
-  transform: skewY(22.5deg); /* unskew slice contents */
-}
